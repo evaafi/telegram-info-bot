@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
 import TelegramBot, { ChatId, SendMessageOptions } from 'node-telegram-bot-api';
 import 'dotenv/config'
-import { getAssetTotals } from './getAssetTotal';
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
@@ -13,7 +12,7 @@ const CODE_TO_MSG = {
 const bot = new TelegramBot(TOKEN || '', { polling: true });
 const menu = [
     [{ text: 'Open Application', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/new' } }],
-    [{ text: 'Market Data', web_app: { url: 'https://https://front-end-two-snowy.vercel.app/#/market' }}],
+    [{ text: 'Market Data', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/market' }}],
     [{ text: 'Get Testnet Tokens', callback_data: 'Get tokens' }],
     [{ text: 'Join EVAA Community', url: 'https://t.me/EvaaProtocolHub' }],
     [{ text: 'EVAA News', url: 'https://t.me/evaaprotocol' }],
@@ -45,12 +44,6 @@ bot.on('callback_query', (callbackQuery) => {
                 bot.sendMessage(msg.chat.id, CODE_TO_MSG[code]);
             });
         });
-    }
-
-    if (callbackQuery.data === 'Market Data') {
-        getAssetTotals().then(data => {
-            bot.sendMessage(chatId, JSON.stringify(data));
-        })
     }
 });
 

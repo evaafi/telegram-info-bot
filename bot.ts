@@ -1,6 +1,10 @@
 import fetch from 'node-fetch';
 import TelegramBot, { ChatId, MessageEntityType, SendMessageOptions } from 'node-telegram-bot-api';
 import 'dotenv/config'
+import http from 'http';
+import express from 'express';
+
+const SERVER_PORT = process.env.PORT || '3000';
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
@@ -76,3 +80,18 @@ const getTokens = async (address?: string) => {
     }
 }
 
+
+
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+// app.use(express.static(join(path.resolve(''), 'public')));
+
+app.set('port', SERVER_PORT);
+
+const server = http.createServer(app);
+server.listen(SERVER_PORT);
+
+server.on('listening', () => {
+    console.info(`Listening on ${SERVER_PORT}`);
+});

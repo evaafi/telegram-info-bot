@@ -11,32 +11,34 @@ const CODE_TO_MSG = {
 
 const bot = new TelegramBot(TOKEN || '', { polling: true });
 
-bot.onText(/\/start/, (msg) => {
+bot.onText(/\/start/, (msg: any) => { //todo rm any
     const chatId = msg.chat.id;
 
     const message = `🎉 Welcome to EVAA \n\n💱 EVAA - the landing protocol on TON blockchain \n\n[Submit Testnet feedback!](https://forms.gle/Sr6Rs2VhQqYdDuCVA) \n\nSubscribe to [our news](https://t.me/evaaprotocol) \nJoin our [EVAA Comunity](https://t.me/EvaaProtocolHub) \n\nStay tuned!`;
     const options: SendMessageOptions = {
         parse_mode: 'Markdown',
         disable_web_page_preview: true,
-        reply_markup: { inline_keyboard: 
-            [
-            [{ text: '🏦 Launch App', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/new' }  }],
-            [{ text: '📊 Market Data', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/market' }}, { text: '💰 Get Testnet Tokens', callback_data: 'Get tokens' }]
-        ]},  
-        
+        reply_markup: {
+            inline_keyboard:
+                [
+                    [{ text: '🏦 Launch App', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/new' } }],
+                    [{ text: '📊 Market Data', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/market' } }, { text: '💰 Get Testnet Tokens', callback_data: 'Get tokens' }]
+                ]
+        },
+
     };
 
     bot.sendMessage(chatId, message, options);
 });
 
-bot.on('callback_query', (callbackQuery) => {
+bot.on('callback_query', (callbackQuery: any) => { //todo rm any
     const chatId = callbackQuery.message?.chat.id as ChatId;
 
     if (callbackQuery.data === 'Get tokens') {
         const message = 'Enter your TON address to receive testnet tokens';
         bot.sendMessage(chatId, message);
 
-        bot.once('message', (msg) => {
+        bot.once('message', (msg: any) => { //todo rm any
             getTokens(msg.text).then(code => {
                 bot.sendMessage(msg.chat.id, CODE_TO_MSG[code]);
             });

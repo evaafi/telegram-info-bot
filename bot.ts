@@ -1,5 +1,5 @@
 import fetch from 'node-fetch';
-import TelegramBot, { ChatId, SendMessageOptions } from 'node-telegram-bot-api';
+import TelegramBot, { ChatId, MessageEntityType, SendMessageOptions } from 'node-telegram-bot-api';
 import 'dotenv/config'
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
@@ -10,23 +10,19 @@ const CODE_TO_MSG = {
 };
 
 const bot = new TelegramBot(TOKEN || '', { polling: true });
-const menu = [
-    [{ text: 'Open Application', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/new' } }],
-    [{ text: 'Market Data', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/market' }}],
-    [{ text: 'Get Testnet Tokens', callback_data: 'Get tokens' }],
-    [{ text: 'Join EVAA Community', url: 'https://t.me/EvaaProtocolHub' }],
-    [{ text: 'EVAA News', url: 'https://t.me/evaaprotocol' }],
-    [{ text: 'Submit Testnet Feedback', url: 'https://forms.gle/Sr6Rs2VhQqYdDuCVA' }],
-    [{ text: 'Notifications (soon)', callback_data: 'notifications' }]
-];
-
 
 bot.onText(/\/start/, (msg) => {
     const chatId = msg.chat.id;
 
-    const message = 'Welcome To EVAA Menu Telegram Bot';
+    const message = `\n🎉 Welcome to EVAA \n\n\n💱 EVAA - the landing protocol on TON blockchain \n\n\n[Submit Testnet feedback!](https://forms.gle/Sr6Rs2VhQqYdDuCVA) \n\n\nSubscribe to [our news](https://t.me/evaaprotocol) \n\nJoin our [EVAA Comunity](https://t.me/EvaaProtocolHub) \n\n\nStay tuned!`;
     const options: SendMessageOptions = {
-        reply_markup: { inline_keyboard: menu }
+        parse_mode: 'Markdown',
+        reply_markup: { inline_keyboard: 
+            [
+            [{ text: '🏦 Launch App', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/new' }  }],
+            [{ text: '📊 Market Data', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/market' }}, { text: '💰 Receve Testnet Tokens', callback_data: 'Get tokens' }]
+        ]},  
+        
     };
 
     bot.sendMessage(chatId, message, options);

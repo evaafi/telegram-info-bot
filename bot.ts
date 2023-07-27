@@ -14,13 +14,14 @@ const bot = new TelegramBot(TOKEN || '', { polling: true });
 bot.onText(/\/start/, (msg) => {
     const chatId = msg.chat.id;
 
-    const message = `\n🎉 Welcome to EVAA \n\n\n💱 EVAA - the landing protocol on TON blockchain \n\n\n[Submit Testnet feedback!](https://forms.gle/Sr6Rs2VhQqYdDuCVA) \n\n\nSubscribe to [our news](https://t.me/evaaprotocol) \n\nJoin our [EVAA Comunity](https://t.me/EvaaProtocolHub) \n\n\nStay tuned!`;
+    const message = `🎉 Welcome to EVAA \n\n💱 EVAA - the landing protocol on TON blockchain \n\n[Submit Testnet feedback!](https://forms.gle/Sr6Rs2VhQqYdDuCVA) \n\nSubscribe to [our news](https://t.me/evaaprotocol) \nJoin our [EVAA Comunity](https://t.me/EvaaProtocolHub) \n\nStay tuned!`;
     const options: SendMessageOptions = {
         parse_mode: 'Markdown',
+        disable_web_page_preview: true,
         reply_markup: { inline_keyboard: 
             [
             [{ text: '🏦 Launch App', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/new' }  }],
-            [{ text: '📊 Market Data', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/market' }}, { text: '💰 Receve Testnet Tokens', callback_data: 'Get tokens' }]
+            [{ text: '📊 Market Data', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/market' }}, { text: '💰 Get Testnet Tokens', callback_data: 'Get tokens' }]
         ]},  
         
     };

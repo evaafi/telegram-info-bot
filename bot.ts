@@ -9,7 +9,7 @@ const CODE_TO_MSG = {
     ok: 'You used the tokens faucet. The action will take some time to process, please do not worry'
 };
 
-const bot = new TelegramBot(TOKEN || '', { webHook: { port: Number(process.env.PORT) }, polling: true });
+const bot = new TelegramBot(TOKEN || '', { polling: true });
 
 bot.onText(/\/start/, (msg: any) => { //todo rm any
     const chatId = msg.chat.id;

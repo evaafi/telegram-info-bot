@@ -25,8 +25,8 @@ bot.onText(/\/start/, (msg: any) => { //todo rm any
         reply_markup: {
             inline_keyboard:
                 [
-                    [{ text: '🏦 Launch App', web_app: { url: 'https://app.evaa.finance/#/new' } }],
-                    [{ text: '📊 Market Data', web_app: { url: 'https://app.evaa.finance/#/market' } }, { text: '💰 Get Testnet Tokens', callback_data: 'Get tokens' }]
+                    [{ text: '🏦 Launch App', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/new' } }],
+                    [{ text: '📊 Market Data', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/market' } }, { text: '💰 Get Testnet Tokens', callback_data: 'Get tokens' }]
                 ]
         },
 

@@ -25,7 +25,7 @@ bot.onText(/\/start/, (msg: any) => { //todo rm any
         reply_markup: {
             inline_keyboard:
                 [
-                    [{ text: '🏦 Launch App', web_app: { url: 'https://app.evaa.finance/#/new' } }],
+                    [{ text: '🏦 Launch App', web_app: { url: 'https://app.evaa.finance' } }],
                     [{ text: '📊 Market Data', web_app: { url: 'https://app.evaa.finance/#/market' } }, { text: '💰 Get Testnet Tokens', callback_data: 'Get tokens' }]
                 ]
         },

@@ -6,7 +6,7 @@ import express from 'express';
 
 const SERVER_PORT = process.env.PORT || '3000';
 
-const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TOKEN = '6381110610:AAEYXVHSbvMsdlc05BHm0-Vo_pErkKrlGdU';
 
 const CODE_TO_MSG = {
     denied: 'You has already collected testnet tokens. You are only allowed to do this once',
@@ -25,7 +25,7 @@ bot.onText(/\/start/, (msg: any) => { //todo rm any
         reply_markup: {
             inline_keyboard:
                 [
-                    [{ text: '🏦 Launch App', web_app: { url: 'https://app.evaa.finance' } }],
+                    [{ text: '🏦 Launch App', web_app: { url: 'https://5456-148-63-17-116.ngrok-free.app/#/twa' } }],
                     [{ text: '📊 Market Data', web_app: { url: 'https://app.evaa.finance/#/market' } }, { text: '💰 Get Testnet Tokens', callback_data: 'Get tokens' }]
                 ]
         },

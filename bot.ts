@@ -20,7 +20,7 @@ bot.onText(/\/start/, (msg: any) => { //todo rm any
         reply_markup: {
             inline_keyboard:
                 [
-                    [{ text: '🏦 Launch App', web_app: { url: 'https://front-end-two-snowy.vercel.app/#/twa' } }],
+                    [{ text: '🏦 Launch App', web_app: { url: 'https://app.evaa.finance/#/twa' } }],
                     [{ text: '📊 Market Data', web_app: { url: 'https://app.evaa.finance/#/market' } }, { text: '📖 Guidebook', web_app: { url: 'https://evaa.gitbook.io/intro/' } }]
                 ]
         },

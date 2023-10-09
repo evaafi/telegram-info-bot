@@ -8,11 +8,6 @@ const SERVER_PORT = process.env.PORT || '3000';
 
 const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
-const CODE_TO_MSG = {
-    denied: 'You has already collected testnet tokens. You are only allowed to do this once',
-    ok: 'You used the tokens faucet. The action will take some time to process, please do not worry'
-};
-
 const bot = new TelegramBot(TOKEN || '', { polling: true });
 
 bot.onText(/\/start/, (msg: any) => { //todo rm any
@@ -35,51 +30,8 @@ bot.onText(/\/start/, (msg: any) => { //todo rm any
     bot.sendMessage(chatId, message, options);
 });
 
-bot.on('callback_query', (callbackQuery: any) => { //todo rm any
-    const chatId = callbackQuery.message?.chat.id as ChatId;
-
-    if (callbackQuery.data === 'Get tokens') {
-        const message = 'Enter your TON address to receive testnet tokens';
-        bot.sendMessage(chatId, message);
-
-        bot.once('message', (msg: any) => { //todo rm any
-            getTokens(msg.text).then(code => {
-                bot.sendMessage(msg.chat.id, CODE_TO_MSG[code]);
-            });
-        });
-    }
-});
-
-
 
 bot.on("polling_error", console.log);
-
-
-
-const getTokens = async (address?: string) => {
-    try {
-        const response = await fetch('https://evaa-testnet-faucet.herokuapp.com/api/v1/feed', {
-            method: "POST",
-            headers: {
-                Accept: "application/json, text/plain, */*",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                address
-            })
-        });
-
-        const parsedResponse = await response.json();
-
-        if (parsedResponse.status === 'denied') {
-            return 'denied'
-        }
-        return 'ok'
-    } catch {
-        return 'ok'
-    }
-}
-
 
 
 const app = express();

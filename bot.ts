@@ -20,8 +20,8 @@ bot.onText(/\/start/, (msg: any) => { //todo rm any
         reply_markup: {
             inline_keyboard:
                 [
-                    [{ text: '🏦 Launch App', web_app: { url: 'https://app.evaa.finance/' } }],
-                    [{ text: '📊 Market Data', web_app: { url: 'https://app.evaa.finance/market' } }, { text: '📖 Guidebook', web_app: { url: 'https://evaa.gitbook.io/intro/' } }]
+                    [{ text: '🏦 Launch App', web_app: { url: 'https://sepezhotest.web.app/' } }],
+                    [{ text: '📊 Market Data', web_app: { url: 'https://sepezhotest.web.app/market' } }, { text: '📖 Guidebook', web_app: { url: 'https://evaa.gitbook.io/intro/' } }]
                 ]
         },
 

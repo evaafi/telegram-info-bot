@@ -13,7 +13,7 @@ const bot = new TelegramBot(TOKEN || '', { polling: true });
 bot.onText(/\/start/, (msg: any) => { //todo rm any
     const chatId = msg.chat.id;
 
-    const message = `🎉 Welcome to EVAA \n\n💱 EVAA - the lending protocol on TON blockchain \n\nSubscribe to [our news](https://t.me/evaaprotocol) \nJoin our [EVAA Comunity](https://t.me/EvaaProtocolHub) \n\nStay tuned!`;
+    const message = `🎉 Welcome to EVAA \n\n💱 EVAA - first lending protocol on TON blockchain \n\nSubscribe to [our news](https://t.me/evaaprotocol) \nJoin our [EVAA Comunity](https://t.me/EvaaProtocolHub) \n\nStay tuned!`;
     const options: SendMessageOptions = {
         parse_mode: 'Markdown',
         disable_web_page_preview: true,
